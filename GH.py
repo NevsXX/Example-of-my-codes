@@ -9,3 +9,6 @@ print(name)
 
 a = 5 * 5
 print(a)
+
+#update number 1
+print("Ты хуесос")
