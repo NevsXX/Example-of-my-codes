@@ -1,13 +1,14 @@
 import random
+import time
 
 class bot:
     Names = ['Mabel','Mackenzie','Mia','Jaden','Jeffery','Jesus','Joseph Jostar','Juan','Horace','Hunter','George','Gordon','Carlos','Connor','Cody','clown Joker','rap rocker','Rayan Gosling']
-    def __init__(self,name=Names[random.randint(0,19)],creampie=random.randint(0,20000)):
+    def __init__(self,name=Names[random.randint(0,19)],creampie=random.randint(0,20000),points=random.randint(4,30)):
         self.name = name
-        self.money = creampie
+        self.creampie = creampie
+        self.points = points
     def show(self):
-        print("Name: ")
-
+        print('Name: ',self.name,'\n' 'Money: ',self.creampie, '\n' 'Points: ',self.points)
 
 
 class user:
@@ -17,32 +18,47 @@ class user:
         self.gender = gender
         self.points = points
     def show(self):
-        print('Creampie count:',self.creampie, '\n' 'Gender:',self.gender, '\n' 'Name:',self.name)
+        print('Name:',self.name, '\n' 'Gender:',self.gender, '\n''Creampie count:',self.creampie)
 
-count = int(input("введите количество игроков"))
-AF = ['a','b','c','d','e']
-My_Name = str(input('Введите ваше имя: '))
-My_Creampie = int(input('Введите вашу денежку: '))
-My_Gender = str(input('Введите ваш пол (гендер): '))
-print('Да начнется игра, и пусть удача всегда будет с вами')
+def download(n):
+    for i in range(101):
+        dw = str(i)+ '%'
+        print(dw, end='')
+        print('\r', end='')
+        k = random.uniform(0.02,0.3)//n
+        time.sleep(k)
+    
 
+
+
+count = int(input("введите количество игроков: "))
+bots = []
 for i in range(count):
-    AF[random.randint(6)] = user()
+    bots.append(bot())
 
+
+my_name = str(input('Введите ваше имя: '))
+my_creampie = int(input('Введите вашу денежку: '))
+my_gender = str(input('Введите ваш пол (гендер): '))
+me = user(my_creampie, my_name, my_gender)
+me.show()
+
+print('\n','Да начнется игра, и пусть удача всегда будет с вами')
+time.sleep(2)
 
 
 
 #Раздача
-print("Происходит раздача карт",'\n')
+print('\n','Происходит раздача карт','\n')
+download(1)
 
 
 
+#Начало игры
+print("Ваш статус","\n")
+me.show()
+download(4)
 
 
 
-
-
-
-One = user(1000,'Ben','White')
-One.show()
 
