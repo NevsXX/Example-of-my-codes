@@ -1,0 +1,48 @@
+import random
+
+class bot:
+    Names = ['Mabel','Mackenzie','Mia','Jaden','Jeffery','Jesus','Joseph Jostar','Juan','Horace','Hunter','George','Gordon','Carlos','Connor','Cody','clown Joker','rap rocker','Rayan Gosling']
+    def __init__(self,name=Names[random.randint(0,19)],creampie=random.randint(0,20000)):
+        self.name = name
+        self.money = creampie
+    def show(self):
+        print("Name: ")
+
+
+
+class user:
+    def __init__(self, creampie=random.randint(-1000,1000), name='Unknow', gender='Unknow',points=0):
+        self.creampie = creampie
+        self.name = name
+        self.gender = gender
+        self.points = points
+    def show(self):
+        print('Creampie count:',self.creampie, '\n' 'Gender:',self.gender, '\n' 'Name:',self.name)
+
+count = int(input("введите количество игроков"))
+AF = ['a','b','c','d','e']
+My_Name = str(input('Введите ваше имя: '))
+My_Creampie = int(input('Введите вашу денежку: '))
+My_Gender = str(input('Введите ваш пол (гендер): '))
+print('Да начнется игра, и пусть удача всегда будет с вами')
+
+for i in range(count):
+    AF[random.randint(6)] = user()
+
+
+
+
+#Раздача
+print("Происходит раздача карт",'\n')
+
+
+
+
+
+
+
+
+
+One = user(1000,'Ben','White')
+One.show()
+
