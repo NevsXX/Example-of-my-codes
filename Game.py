@@ -1,6 +1,7 @@
 import random
 import time
-import turtle
+import keyboard
+import os
 
 #боты
 class bot:
@@ -14,42 +15,62 @@ class bot:
 
 #Главный игрок
 class user:
-    def __init__(self, creampie=random.randint(-1000,1000), name='Unknow', gender='Unknow',points=0):
+    def __init__(self, creampie=0, name='Unknow', gender='Unknow',points=0):
         self.creampie = creampie
         self.name = name
         self.gender = gender
-        self.points = int(points)
-        '''self.points = []'''
+        self.points = points
 
     def show(self):
         print('Name:',self.name, '\n' 'Gender:',self.gender, '\n''Creampie count:',self.creampie,'\n''Points:',self.points)
 
-def take_card():
-    print("Function Up worlking")
-    """#self.points + random.randint(6,12)
-     #print('Карта была взята. Проверте свой')
-    self.points.append(random.randint(6,12))"""  
+    def take_card(self):
+        self.points += random.randint(6,12)
+        print('\n''Points was plus','\n''Your points: ',self.points)
+        return self.points
+    
+    def your_bet(self):
+        credit = int(input('Write your credit: '))
+        self.creampie -= credit
+        print('Your bet: ',credit,'\n''Your cash: ',self.creampie)
+        return self.creampie, credit
+    
+#Подсчет результатов и конец игры    
+def the_end():
+    print('Funcion the_end worked')   
+#Меню
+def menu():
+    print('\n''place the bet and start - press key Up','\n' 'Show my state - press key Down')
+    keyboard.add_hotkey('Up', me.your_bet)
+    keyboard.add_hotkey('Up', me.take_card)
+    keyboard.add_hotkey('Down', show_my_state)
+    keyboard.wait('esc')
+    if keyboard.add_hotkey('Up', me.your_bet) and keyboard.add_hotkey('Up', me.take_card) == True:
+        keyboard.add_hotkey('Left', the_end)
     
 #Функция изображения загрузки
 def download(n):
     for i in range(101):
         dw = str(i)+ '%'
-        print(dw, end='')
+        print('  ',dw, end='')
         print('\r', end='')
         k = random.uniform(0.02,0.3)/n
         time.sleep(k)
+        
+def show_my_state():
+    me.show()
 
-'''def take_card():
-    user.points()
-'''
 
 #Приветствие игры
+credit = 0
+clear = lambda: os.system('cls')
+clear()
 print('Добро пожаловать в игру 21','\n')
-time.sleep(3)
+time.sleep(1)
+clear()
 
 #Заполнение класса пользователя и создание ботов
 count = int(input("введите количество игроков: "))
-window = turtle.Screen()
 bots = []
 for i in range(count):
     bots.append(bot())
@@ -57,15 +78,13 @@ my_name = str(input('Введите ваше имя: '))
 my_creampie = int(input('Введите вашу денежку: '))
 my_gender = str(input('Введите ваш пол (гендер): '))
 me = user(my_creampie, my_name, my_gender)
-me.show()
-"""time.sleep(3)"""
-print('\n','Сбор данных','\n')
+clear()
+print('\n''  Saving','\n')
 #download(1)
-
+clear()
 
 #Начало игры
 print("Ваш статус","\n")
 me.show()
 """download(4)"""
-print('\n','Take the card - press key Up')
-window.onkey(take_card,"Up") 
+menu()
