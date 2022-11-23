@@ -40,13 +40,15 @@ def the_end():
     print('Funcion the_end worked')   
 #Меню
 def menu():
-    print('\n''place the bet and start - press key Up','\n' 'Show my state - press key Down')
-    keyboard.add_hotkey('Up', me.your_bet)
-    keyboard.add_hotkey('Up', me.take_card)
-    keyboard.add_hotkey('Down', show_my_state)
+    print('\n''Start 21 - press Q ','\n' 'Show my state - press S','\n''Exit from game - press ESC')
+    keyboard.add_hotkey('S', show_my_state)
+    keyboard.add_hotkey('Q', game)
     keyboard.wait('esc')
-    if keyboard.add_hotkey('Up', me.your_bet) and keyboard.add_hotkey('Up', me.take_card) == True:
-        keyboard.add_hotkey('Left', the_end)
+    
+def game():
+    me.your_bet()
+    keyboard.add_hotkey('A', me.take_card)
+    keyboard.wait('esc')
     
 #Функция изображения загрузки
 def download(n):
