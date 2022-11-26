@@ -103,11 +103,12 @@ def download(n):
 
 #Отображение статы
 def show_my_state():
+    print('\n')
     me.show()
 
 #Инструкция
 def inst():
-        print('\n''Start 21 - press Q ','\n' 'Show my state - press S','\n''Exit from game - press ESC','\n' 'Instruction - press I')        
+        print('\n''Start 21 - press Q ','\n' 'Show my state - press S','\n''Exit from game - press ESC','\n' 'Instruction - press Z')        
 
 #Приветствие игры
 a = 0
