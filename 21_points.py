@@ -47,26 +47,26 @@ def the_end(count):
             print('Ваши очки: ',me.points,'\n' 'Вы проиграли')
             
     elif me.points == 21:
-            me.creampie  + (credit * 2)
+            me.creampie  += (credit * 2)
             print(me.name, 'Набрал 21 очко и является победителем')
     else:
         while count>=0:
             count -= 1
             a = bot()
             if a.points == 21:
-                a.creampie + (credit * 2)
+                a.creampie += (credit * 2)
                 print(a.name, '- Winner')
                 break
             else:
                 if a.points > 21:
-                    a.creampie - credit
+                    a.creampie -= credit
                     break
                 elif a.points < 21 and a.points > me.points:
-                    a.creampie + (credit * 2)
+                    a.creampie += (credit * 2)
                     print(a.name, '- победил, так как имеет больше всего очков',a.points)
                     break
                 else:
-                    me.creampie  + (credit * 2)
+                    me.creampie  += (credit * 2)
                     print(me.name,'Победил, так как имеет',me.points,'\n' 'Ваш кредит был возвращен в двойном размере')
                     break
                 
