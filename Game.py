@@ -6,7 +6,7 @@ import os
 #боты
 class bot:
     Names = ['Mabel','Mackenzie','Mia','Jaden','Jeffery','Jesus','Joseph Jostar','Juan','Horace','Hunter','George','Gordon','Carlos','Connor','Cody','clown Joker','rap rocker','Rayan Gosling']
-    def __init__(self,name=Names[random.randint(0,19)],creampie=random.randint(0,20000),points=random.randint(4,30)):
+    def __init__(self,name=Names[random.randint(0,19)],creampie=random.randint(0,20000),points=random.randint(6,30)):
         self.name = name
         self.creampie = creampie
         self.points = points
@@ -24,10 +24,15 @@ class user:
     def show(self):
         print('Name:',self.name, '\n' 'Gender:',self.gender, '\n''Creampie count:',self.creampie,'\n''Points:',self.points)
 
+    def take_card_2(self):
+        self.points += random.randint(6,12)
+        print('\n''You take card','\n''Your points: ',self.points)
+        return self.points
+    
     def take_card(self):
         self.points += random.randint(6,12)
-        print('\n''Points was plus','\n''Your points: ',self.points)
         return self.points
+    
     
     def your_bet(self):
         credit = int(input('Write your credit: '))
@@ -37,18 +42,44 @@ class user:
     
 #Подсчет результатов и конец игры    
 def the_end():
-    print('Funcion the_end worked')   
+    print('Funcion the_end worked')
+    me.points += random.randint(6,12)
+    if me.points > 21:
+            print('Ваш счет: ',me.points,'\n' 'Вы проиграли')
+    elif me.points == 21:
+            print(me.name, 'Набрал 21 очко и является победителем')
+    else:
+        for i in range(len(bots)+1):
+                if (bots[i]).points == 21:
+                    print(bots[i].name, '- Winner')
+                else:
+                    if (bots[i]).points > 21:
+                        pass
+                    elif bots[i].points < 21 and bots[i].points > me.points:
+                        print(bots[i], '- победил, так как имеет',bots[i].points)
+                    else: print(me.name,'Победил, так как имеет',me.points)
+                
+    
+    
+    
+    
 #Меню
 def menu():
-    print('\n''Start 21 - press Q ','\n' 'Show my state - press S','\n''Exit from game - press ESC')
-    keyboard.add_hotkey('S', show_my_state)
-    keyboard.add_hotkey('Q', game)
-    keyboard.wait('esc')
+    print('\n''Start 21 - press Q ','\n' 'Show my state - press A','\n''Exit from game - press ESC','\n' 'Instruction - press Z')
+    keyboard.add_hotkey('Z', inst)
+    keyboard.add_hotkey('A', show_my_state)
+    keyboard.wait('Q')
     
-def game():
+'''def game():
+    keyboard.add_hotkey('Z', inst)
+    keyboard.add_hotkey('S', me.take_card)
+    keyboard.add_hotkey('A', show_my_state)
+    keyboard.add_hotkey('X',the_end)
     me.your_bet()
-    keyboard.add_hotkey('A', me.take_card)
-    keyboard.wait('esc')
+    me.take_card(0)
+    print('\n' 'Начинается раздача карт.')
+    print('\n''Ваш счет: ', me.points, '\n' 'Если хотите взять еще карту нажмите -  S','\n''Чтобы закончить игру и вскрыть неизвестну карту нажмите - X')
+    keyboard.wait('esc')'''
     
 #Функция изображения загрузки
 def download(n):
@@ -62,6 +93,8 @@ def download(n):
 def show_my_state():
     me.show()
 
+def inst():
+        print('\n''Start 21 - press Q ','\n' 'Show my state - press S','\n''Exit from game - press ESC','\n' 'Instruction - press I')        
 
 #Приветствие игры
 credit = 0
@@ -74,7 +107,7 @@ clear()
 #Заполнение класса пользователя и создание ботов
 count = int(input("введите количество игроков: "))
 bots = []
-for i in range(count):
+for i in range(count-1):
     bots.append(bot())
 my_name = str(input('Введите ваше имя: '))
 my_creampie = int(input('Введите вашу денежку: '))
@@ -90,3 +123,12 @@ print("Ваш статус","\n")
 me.show()
 """download(4)"""
 menu()
+me.your_bet()
+me.take_card
+keyboard.add_hotkey('S', me.take_card_2)
+keyboard.add_hotkey('A', show_my_state)
+keyboard.add_hotkey('X',the_end)
+keyboard.add_hotkey('Z', inst)
+print('\n' 'Начинается раздача карт.')
+print('\n''Ваш счет: ', me.points, '\n' 'Если хотите взять еще карту нажмите -  S','\n''Чтобы закончить игру и вскрыть неизвестную карту нажмите - X')
+keyboard.wait('esc')
