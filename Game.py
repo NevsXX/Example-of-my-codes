@@ -41,29 +41,40 @@ class user:
         return self.creampie, credit
     
 #Подсчет результатов и конец игры    
-def the_end():
-    print('Funcion the_end worked')
+def the_end(count):
     me.points += random.randint(6,12)
     if me.points > 21:
-            print('Ваш счет: ',me.points,'\n' 'Вы проиграли')
+            print('Ваши очки: ',me.points,'\n' 'Вы проиграли')
+            
     elif me.points == 21:
+            me.creampie  + (credit * 2)
             print(me.name, 'Набрал 21 очко и является победителем')
     else:
-        for i in range(len(bots)+1):
-                if (bots[i]).points == 21:
-                    print(bots[i].name, '- Winner')
+        while count>=0:
+            count -= 1
+            a = bot()
+            if a.points == 21:
+                a.creampie + (credit * 2)
+                print(a.name, '- Winner')
+                break
+            else:
+                if a.points > 21:
+                    a.creampie - credit
+                    break
+                elif a.points < 21 and a.points > me.points:
+                    a.creampie + (credit * 2)
+                    print(a.name, '- победил, так как имеет больше всего очков',a.points)
+                    break
                 else:
-                    if (bots[i]).points > 21:
-                        pass
-                    elif bots[i].points < 21 and bots[i].points > me.points:
-                        print(bots[i], '- победил, так как имеет',bots[i].points)
-                    else: print(me.name,'Победил, так как имеет',me.points)
+                    me.creampie  + (credit * 2)
+                    print(me.name,'Победил, так как имеет',me.points,'\n' 'Ваш кредит был возвращен в двойном размере')
+                    break
                 
     
     
     
     
-#Меню
+#Начально меню
 def menu():
     print('\n''Start 21 - press Q ','\n' 'Show my state - press A','\n''Exit from game - press ESC','\n' 'Instruction - press Z')
     keyboard.add_hotkey('Z', inst)
@@ -89,19 +100,22 @@ def download(n):
         print('\r', end='')
         k = random.uniform(0.02,0.3)/n
         time.sleep(k)
-        
+
+#Отображение статы
 def show_my_state():
     me.show()
 
+#Инструкция
 def inst():
         print('\n''Start 21 - press Q ','\n' 'Show my state - press S','\n''Exit from game - press ESC','\n' 'Instruction - press I')        
 
 #Приветствие игры
+a = 0
 credit = 0
 clear = lambda: os.system('cls')
 clear()
 print('Добро пожаловать в игру 21','\n')
-time.sleep(1)
+download(4)
 clear()
 
 #Заполнение класса пользователя и создание ботов
@@ -115,20 +129,27 @@ my_gender = str(input('Введите ваш пол (гендер): '))
 me = user(my_creampie, my_name, my_gender)
 clear()
 print('\n''  Saving','\n')
-#download(1)
+download(1)
 clear()
 
 #Начало игры
-print("Ваш статус","\n")
+print("Ваш статус: ","\n")
 me.show()
-"""download(4)"""
+print('\n')
+download(4)
+print('\n')
 menu()
+
+#Игра
+clear()
 me.your_bet()
-me.take_card
+me.take_card()
 keyboard.add_hotkey('S', me.take_card_2)
 keyboard.add_hotkey('A', show_my_state)
-keyboard.add_hotkey('X',the_end)
+keyboard.add_hotkey('X', lambda: the_end(count))
 keyboard.add_hotkey('Z', inst)
 print('\n' 'Начинается раздача карт.')
+download(2)
+clear()
 print('\n''Ваш счет: ', me.points, '\n' 'Если хотите взять еще карту нажмите -  S','\n''Чтобы закончить игру и вскрыть неизвестную карту нажмите - X')
 keyboard.wait('esc')
