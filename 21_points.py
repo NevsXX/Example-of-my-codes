@@ -44,7 +44,7 @@ class user:
 def the_end(count):
     me.points += random.randint(6,12)
     if me.points > 21:
-            print('Ваши очки: ',me.points,'\n' 'Вы проиграли')
+            print('Ваши очки: ',me.points,'\n' 'Вы проиграли','\n' 'Ваша ставка была потеряна')
             
     elif me.points == 21:
             me.creampie  += (credit * 2)
@@ -55,7 +55,7 @@ def the_end(count):
             a = bot()
             if a.points == 21:
                 a.creampie += (credit * 2)
-                print(a.name, '- Winner')
+                print(a.name, '- победил','\n',a.name, '- набрал ровно 21 очко','\n' 'Ваши очки были: ',me.points)
                 break
             else:
                 if a.points > 21:
