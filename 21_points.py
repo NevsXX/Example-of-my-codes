@@ -44,7 +44,7 @@ class user:
 def the_end(count):
     me.points += random.randint(6,12)
     if me.points > 21:
-            print('Ваши очки: ',me.points,'\n' 'Вы проиграли','\n' 'Ваша ставка была потеряна')
+            print('\n Ваши очки: ',me.points,'\n' 'Вы проиграли','\n' 'Ваша ставка была потеряна')
             
     elif me.points == 21:
             me.creampie  += (credit * 2)
@@ -69,10 +69,6 @@ def the_end(count):
                     me.creampie  += (credit * 2)
                     print(me.name,'Победил, так как имеет',me.points,'\n' 'Ваш кредит был возвращен в двойном размере')
                     break
-                
-    
-    
-    
     
 #Начально меню
 def menu():
@@ -80,18 +76,7 @@ def menu():
     keyboard.add_hotkey('Z', inst)
     keyboard.add_hotkey('A', show_my_state)
     keyboard.wait('Q')
-    
-'''def game():
-    keyboard.add_hotkey('Z', inst)
-    keyboard.add_hotkey('S', me.take_card)
-    keyboard.add_hotkey('A', show_my_state)
-    keyboard.add_hotkey('X',the_end)
-    me.your_bet()
-    me.take_card(0)
-    print('\n' 'Начинается раздача карт.')
-    print('\n''Ваш счет: ', me.points, '\n' 'Если хотите взять еще карту нажмите -  S','\n''Чтобы закончить игру и вскрыть неизвестну карту нажмите - X')
-    keyboard.wait('esc')'''
-    
+        
 #Функция изображения загрузки
 def download(n):
     for i in range(101):
