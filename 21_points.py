@@ -106,7 +106,7 @@ clear()
 
 #Заполнение класса пользователя и создание ботов
 count = int(input("введите количество игроков: "))
-bots = []
+bots = [] 
 for i in range(count-1):
     bots.append(bot())
 my_name = str(input('Введите ваше имя: '))
