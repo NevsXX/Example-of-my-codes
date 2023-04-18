@@ -42,7 +42,7 @@ class user:
     
 #Подсчет результатов и конец игры    
 def the_end(count):
-    me.points += random.randint(6,12)
+    me.points += random.randint(6,11)
     if me.points > 21:
             print('\n Ваши очки: ',me.points,'\n' 'Вы проиграли','\n' 'Ваша ставка была потеряна')
             
