@@ -2,11 +2,12 @@ import random
 import time
 import keyboard
 import os
+import sys
 
 #боты
 class bot:
     Names = ['Mabel','Mackenzie','Mia','Jaden','Jeffery','Jesus','Joseph Jostar','Juan','Horace','Hunter','George','Gordon','Carlos','Connor','Cody','clown Joker','rap rocker','Rayan Gosling']
-    def __init__(self,name=Names[random.randint(0,19)],creampie=random.randint(0,20000),points=random.randint(6,30)):
+    def __init__(self,name=Names[random.randint(0,19)],creampie=random.randint(1,20000),points=random.randint(6,30)):
         self.name = name
         self.creampie = creampie
         self.points = points
@@ -35,7 +36,7 @@ class user:
     
     
     def your_bet(self):
-        credit = int(input('Write your credit: '))
+        credit = int(input('Write your bet: '))
         self.creampie -= credit
         print('Your bet: ',credit,'\n''Your cash: ',self.creampie)
         return self.creampie, credit
@@ -44,37 +45,37 @@ class user:
 def the_end(count):
     me.points += random.randint(6,11)
     if me.points > 21:
-            print('\n Ваши очки: ',me.points,'\n' 'Вы проиграли','\n' 'Ваша ставка была потеряна')
+            print('\nYour points: ',me.points,'\n' 'You lose','\n' 'Your bet was lost')
             
     elif me.points == 21:
             me.creampie  += (credit * 2)
-            print(me.name, 'Набрал 21 очко и является победителем')
-    else:
-        while count>=0:
-            count -= 1
-            a = bot()
-            if a.points == 21:
+            print(me.name, 'Take 21 points and win!')
+    while count>=0:
+        count -= 1
+        a = bot()
+        if a.points == 21:
+            a.creampie += (credit * 2)
+            print(a.name, '- winner','\n',a.name, '- take 21 points','\n' 'You had: ',me.points,' points')
+            break
+        else:
+            if a.points > 21:
+                a.creampie -= credit
+                break
+            elif a.points < 21 and a.points > me.points:
                 a.creampie += (credit * 2)
-                print(a.name, '- победил','\n',a.name, '- набрал ровно 21 очко','\n' 'Ваши очки были: ',me.points)
+                print(a.name, '- winner, because it has the nearest number to 21: ',a.points,'points')
                 break
             else:
-                if a.points > 21:
-                    a.creampie -= credit
-                    break
-                elif a.points < 21 and a.points > me.points:
-                    a.creampie += (credit * 2)
-                    print(a.name, '- победил, так как имеет больше всего очков',a.points)
-                    break
-                else:
-                    me.creampie  += (credit * 2)
-                    print(me.name,'Победил, так как имеет',me.points,'\n' 'Ваш кредит был возвращен в двойном размере')
-                    break
+                me.creampie  += (credit * 2)
+                print(me.name,'\nYou win because you have',me.points,'\n' 'You take 2x CASH')
+                break
     
 #Начально меню
 def menu():
     print('\n''Start 21 - press Q ','\n' 'Show my state - press A','\n''Exit from game - press ESC','\n' 'Instruction - press Z')
     keyboard.add_hotkey('Z', inst)
     keyboard.add_hotkey('A', show_my_state)
+    keyboard.add_hotkey('esc', exit)
     keyboard.wait('Q')
         
 #Функция изображения загрузки
@@ -91,27 +92,41 @@ def show_my_state():
     print('\n')
     me.show()
 
+#Выход
+def exit():
+    clear()
+    print('Goodbye')
+    time.sleep(3)
+    clear()
+    sys.exit()
+
 #Инструкция
 def inst():
-        print('\n''Start 21 - press Q ','\n' 'Show my state - press S','\n''Exit from game - press ESC','\n' 'Instruction - press Z')        
+        print('\n''Start 21 - press Q ','\n' 'Show my state - press A','\n''Exit from game - press ESC','\n' 'Instruction - press Z')        
 
 #Приветствие игры
 a = 0
 credit = 0
 clear = lambda: os.system('cls')
 clear()
-print('Добро пожаловать в игру 21','\n')
+print('Welcome to 21 game','\n')
 download(4)
 clear()
 
 #Заполнение класса пользователя и создание ботов
-count = int(input("введите количество игроков: "))
-bots = [] 
-for i in range(count-1):
-    bots.append(bot())
-my_name = str(input('Введите ваше имя: '))
-my_creampie = int(input('Введите вашу денежку: '))
-my_gender = str(input('Введите ваш пол (гендер): '))
+try:
+    count = int(input("Write the number of opponents: "))
+    bots = [] 
+    for i in range(count-1):
+        bots.append(bot())
+    my_name = str(input('Write your name: '))
+    my_creampie = int(input('Write your cash: '))
+    my_gender = str(input('Write your gender: '))
+except:
+    clear() 
+    print('\nERROR\nData is entered incorrectly\nTry again')
+    time.sleep(3)
+    exit()
 me = user(my_creampie, my_name, my_gender)
 clear()
 print('\n''  Saving','\n')
@@ -134,8 +149,8 @@ keyboard.add_hotkey('S', me.take_card_2)
 keyboard.add_hotkey('A', show_my_state)
 keyboard.add_hotkey('X', lambda: the_end(count))
 keyboard.add_hotkey('Z', inst)
-print('\n' 'Начинается раздача карт.')
+print('\n' 'disrtibution of cards')
 download(2)
 clear()
-print('\n''Ваш счет: ', me.points, '\n' 'Если хотите взять еще карту нажмите -  S','\n''Чтобы закончить игру и вскрыть неизвестную карту нажмите - X')
+print('\nYour points: ', me.points, '\n' 'Take card -  S','\n''Open a closed card and finish the game - X')
 keyboard.wait('esc')
